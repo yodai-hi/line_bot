@@ -1,2 +1,5 @@
 # Project exclude paths
 /node_modules/
+creds.json
+.DS_Store
+.idea/vcs.xml
