@@ -8,7 +8,6 @@ function initCalendar(row){
   //カレンダーインスタンスの生成
   const calendar = CalendarApp.getCalendarById(calendarId);
 
-
   sendToCalendar(row, calendar, parallel)
 }
 

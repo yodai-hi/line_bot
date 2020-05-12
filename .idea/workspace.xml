@@ -1,25 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5585c525-784a-4d50-8c6b-2cfeef63eebb" name="Default Changelist" comment="" />
+    <list default="true" id="5585c525-784a-4d50-8c6b-2cfeef63eebb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/rich_menu/1_post_menu.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/rich_menu/2_post_image.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/rich_menu/3_request_menu.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/rich_menu/menu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BookingHandler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UserHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/yodai.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/yodai.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/rich_menu.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/rich_menu/menu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalendarController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LineBot.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/LineBot.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LineMessage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/LineMessage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LineRichMenu.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/LineRichMenu.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="KonanWorkspace">
     <executables />
   </component>
   <component name="ProjectId" id="1boUqlFPLEW14Zy1d8vd8ZrpfHJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/creds.json" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="go.import.settings.migrated" value="true" />
@@ -36,6 +68,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/rich_menu" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
@@ -50,8 +84,16 @@
       <option name="presentableId" value="Default" />
       <updated>1589298132401</updated>
       <workItem from="1589298134332" duration="5000" />
-      <workItem from="1589298159032" duration="7104000" />
+      <workItem from="1589298159032" duration="19925000" />
     </task>
+    <task id="LOCAL-00001" summary="[update] gitignoreを更新">
+      <created>1589306785588</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1589306785588</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -60,19 +102,43 @@
       <list>
         <option value="$PROJECT_DIR$/src/LineMessage.js" />
         <option value="$PROJECT_DIR$/src/LineBot.js" />
-        <option value="$PROJECT_DIR$/src/CalendarController.js" />
         <option value="$PROJECT_DIR$/src/LineRichMenu.js" />
       </list>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[update] gitignoreを更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="[update] gitignoreを更新" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="328" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589301088614">
+    <state x="328" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589307609684">
       <screen x="47" y="23" width="1633" height="1027" />
     </state>
-    <state x="328" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/47.23.1633.1027@47.23.1633.1027" timestamp="1589301088614" />
-    <state x="402" y="175" key="SettingsEditor" timestamp="1589300423830">
+    <state x="328" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/47.23.1633.1027@47.23.1633.1027" timestamp="1589307609684" />
+    <state x="531" y="347" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589312691685">
+      <screen x="45" y="23" width="1635" height="1027" />
+    </state>
+    <state x="531" y="347" key="#com.intellij.fileTypes.FileTypeChooser/45.23.1635.1027@45.23.1635.1027" timestamp="1589312691685" />
+    <state x="427" y="126" key="CommitChangelistDialog2" timestamp="1589306785419">
       <screen x="47" y="23" width="1633" height="1027" />
     </state>
+    <state x="427" y="126" key="CommitChangelistDialog2/47.23.1633.1027@47.23.1633.1027" timestamp="1589306785419" />
+    <state x="687" y="422" key="Github.ShareDialog" timestamp="1589306563143">
+      <screen x="47" y="23" width="1633" height="1027" />
+    </state>
+    <state x="687" y="422" key="Github.ShareDialog/47.23.1633.1027@47.23.1633.1027" timestamp="1589306563143" />
+    <state x="618" y="246" key="Github.UntrackedFilesDialog" timestamp="1589306575258">
+      <screen x="47" y="23" width="1633" height="1027" />
+    </state>
+    <state x="618" y="246" key="Github.UntrackedFilesDialog/47.23.1633.1027@47.23.1633.1027" timestamp="1589306575258" />
+    <state x="400" y="175" key="SettingsEditor" timestamp="1589312658119">
+      <screen x="45" y="23" width="1635" height="1027" />
+    </state>
+    <state x="400" y="175" key="SettingsEditor/45.23.1635.1027@45.23.1635.1027" timestamp="1589312658119" />
     <state x="402" y="175" key="SettingsEditor/47.23.1633.1027@47.23.1633.1027" timestamp="1589300423830" />
+    <state x="463" y="276" key="Vcs.Push.Dialog.v2" timestamp="1589306788666">
+      <screen x="47" y="23" width="1633" height="1027" />
+    </state>
+    <state x="463" y="276" key="Vcs.Push.Dialog.v2/47.23.1633.1027@47.23.1633.1027" timestamp="1589306788666" />
   </component>
 </project>

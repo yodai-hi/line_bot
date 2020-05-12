@@ -1,48 +1,47 @@
-///<reference path="CalendarController.ts"/>
+//環境情報の設定
+function initLine(){
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Config");
+  const token = sheet.getRange("B7").getValue();
+  const url_message = "https://api.line.me/v2/bot/message/push";
+  const url_profile = "https://api.line.me/v2/profile";
+  const url_menu = "https://api.line.me/v2/bot/richmenu";
+  const json_header = {
+    "Content-Type": "application/json; charset=UTF-8",
+    "Authorization": "Bearer "+token
+  };
+  const image_header = {
+    "Content-Type": "image/png",
+    "Authorization": "Bearer "+token
+  };
 
-//データの受け取り
-function receiveData(data){
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Booking");
-  const json = JSON.parse(data.postData.contents);
-  const id = json.events[0].source.userId;
-  switch(true){
-    case true:
-      break;
-    case json.postback.data.match("booking"):
-      //日付選択へ
-      bookingDate();
-      break;
-
-    case "postback" in json && "params" in json.postback:
-      const date = new Date(json.postback.param.datetime);
-      const name = getNameById(id);
-      sheet.appendRow([id, name, date]);
-      //コース選択へ
-      bookingCourse();
-      break;
-
-    case json.postback.data.match("course"):
-      const course = json.postback.data.split("=")(1);
-      const col = 4;
-      const row = getLatestBookingById(id);
-      sheet.getRange(row, col).setValue(course)
-      //データの保存処理
-      initCalendar(row);
-      break;
-
-    case json.message.text=="中断":
-      //データの破棄
-      deleteLatestBookingById(id);
-      break;
-
-    default:
-      console.log("")
+  return {
+    token: token,
+    url: {
+      message: url_message,
+      profile: url_profile,
+      menu: url_menu
+    },
+    json_header: json_header,
+    image_header: image_header
   }
-
-
 }
 
-//日付選択
+//ユーザ情報の取得
+function getUserInfo(id){
+  const info = initLine();
+  const  options = {
+    "method": 'get',
+    "headers": info.json_header
+  };
+
+  // @ts-ignore
+  const response = UrlFetchApp.fetch(info.url.profile+"/"+id, options);
+  console.log(response);
+
+  return JSON.parse(response)
+}
+
+//日付選択メッセージを送信
 function bookingDate(){
   const info = initLine();
   const payload = {
@@ -54,11 +53,11 @@ function bookingDate(){
         {
           "type": "datetimepicker",
           "label": "日時選択",
-          "data": "yoyaku",
+          "data": "{\"action\":\"booking\", \"status\":\"date\"}",
           "mode": "date",
-          "initial": "2020-05-11",
-          "max": "2021-05-11",
-          "min": "2019-05-11"
+          "initial": "2020-05-13",
+          "max": "2021-12-31",
+          "min": "2020-05-13"
         }
       ],
       "title": "予約日程",
@@ -68,7 +67,7 @@ function bookingDate(){
 
   const options = {
     method: 'post',
-    json_header: info.json_header,
+    headers: info.json_header,
     payload: JSON.stringify(payload)
   };
 
@@ -77,7 +76,7 @@ function bookingDate(){
   console.log(response);
 }
 
-//コース選択
+//コース選択メッセージを送信
 function bookingCourse(){
   const info = initLine();
   const payload = {
@@ -89,25 +88,25 @@ function bookingCourse(){
         {
           "type": "postback",
           "label": "15分コース",
-          "text": "booking_course",
-          "data": "15"
+          "text": "course",
+          "data": "{\"action\":\"booking\", \"status\":\"course\", \"value\":15}"
         },
         {
           "type": "postback",
           "label": "30分コース",
-          "text": "course",
+          "text": "{\"action\":\"booking\", \"status\":\"course\", \"value\":30}",
           "data": "30"
         },
         {
           "type": "postback",
           "label": "60分コース",
-          "text": "course",
+          "text": "{\"action\":\"booking\", \"status\":\"course\", \"value\":60}",
           "data": "60"
         },
         {
           "type": "postback",
           "label": "90分コース",
-          "text": "course",
+          "text": "{\"action\":\"booking\", \"status\":\"course\", \"value\":90}",
           "data": "90"
         }
       ],
@@ -118,7 +117,7 @@ function bookingCourse(){
 
   const options = {
     method: 'post',
-    json_header: info.json_header,
+    headers: info.json_header,
     payload: JSON.stringify(payload)
   };
 
@@ -127,33 +126,24 @@ function bookingCourse(){
   console.log(response);
 }
 
-//idで最新の予約情報を検索
-function getLatestBookingById(id){
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Booking");
-  //[正規表現を使用した検索]有効
-  const finder = sheet.createTextFinder(id).useRegularExpression(true);
-  const results = finder.findAll();
+//メッセージを送信
+function sendMessage(id, message){
+  const info = initLine();
+  const payload = {
+    "to": id,
+    "messages": [{
+      "type": "text",
+      "text": message
+    }]
+  };
 
-  return parseInt(results[-1][2].slice(1))
-}
+  const options = {
+    "method": "post",
+    "headers": info.json_header,
+    "payload": JSON.stringify(payload)
+  };
 
-//idからユーザ名を検索
-function getNameById(id){
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Users");
-  //[正規表現を使用した検索]有効
-  const finder = sheet.createTextFinder(id).useRegularExpression(true);
-  const results = finder.findAll();
-  const col = 2;
-  const row = parseInt(results[-1][2].slice(1));
-
-  return sheet.getRange(row, col).getValue()
-}
-
-//idで最新の予約情報を検索してその行を消去
-function deleteLatestBookingById(id){
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Booking");
-  //[正規表現を使用した検索]有効
-  const finder = sheet.createTextFinder(id).useRegularExpression(true);
-  const results = finder.findAll();
-  sheet.deleteRows(parseInt(results[-1][2].slice(1)), 1);
+  // @ts-ignore
+  const response = UrlFetchApp.fetch(info.url.message, options);
+  console.log(response);
 }
