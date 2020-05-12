@@ -3,7 +3,7 @@
 function generateRichMenu(){
   const info = initLine();
 
-  const payload = {
+  const data = {
     "size": {
       "width": 2500,
       "height": 843
@@ -52,29 +52,36 @@ function generateRichMenu(){
     ]
   };
 
-  let options = {
-    method: "post",
-    json_header: info.json_header,
-    payload: JSON.stringify(payload)
+  let doc_options = {
+    "method": "post",
+    "contentType": "application/json",
+    "headers": info.json_header,
+    "payload": JSON.stringify(data),
+    "muteHttpExceptions": true
   };
+  console.log(doc_options)
 
   // @ts-ignore
-  let response = UrlFetchApp.fetch(info.url.image_header, options);
-  console.log(response)
+  let response = UrlFetchApp.fetch(info.url.menu, doc_options);
+  console.log(response.getResponseCode(), response.getContentText())
   
-  //リッチメニューの画像を送信
-  const json = JSON.parse(response);
-  const id = json.richMenuId;
-  const filename = "rich_menu.png";
-  const file = DriveApp.getFilesByName(filename).next();
-  options = {
-    method: "post",
-    json_header: info.image_header,
-    payload: Utilities.newBlob(file.getBlob().getBytes(), "image/png", "rich_menu.png").toString()
-  };
-
-  // @ts-ignore
-  response = UrlFetchApp.fetch(info.url.image_header+id+"/content", options);
-  console.log(response)
+  // //リッチメニューの画像を送信
+  // const json = JSON.parse(response.getContentText());
+  // const id = json.richMenuId;
+  // const fileID = "1eL1U6ZSTe6fSorJgd9aNnbUV7dWRflwE";
+  // const file = DriveApp.getFileById(fileID);
+  // console.log(file.getName());
+  //
+  // let img_options = {
+  //   "method": "post",
+  //   "contentType": "image/png",
+  //   "headers": info.image_header,
+  //   "payload": Utilities.newBlob(file.getBlob().getBytes(), "image/png", "menu.png").toString()
+  // };
+  // console.log(img_options)
+  //
+  // // @ts-ignore
+  // response = UrlFetchApp.fetch(info.url.menu+"/"+id+"/content", img_options);
+  // console.log(response)
   
 }
