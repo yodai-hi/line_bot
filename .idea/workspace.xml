@@ -2,20 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5585c525-784a-4d50-8c6b-2cfeef63eebb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.clasp.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SheetBookingHandler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SheetUsersHandler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsscript.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/rich_menu/1_post_menu.sh" beforeDir="false" afterPath="$PROJECT_DIR$/assets/rich_menu/1_post_menu.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/rich_menu/さんわ鍼灸整骨院_公式.lbd" beforeDir="false" afterPath="$PROJECT_DIR$/assets/rich_menu/さんわ鍼灸整骨院_公式.lbd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BookingHandler.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalendarHandler.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LineBot.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LineMessage.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LineRichMenu.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalendarHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LineBot.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/LineBot.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LineMessages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/LineMessages.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserHandler.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/appsscript.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589298132401</updated>
       <workItem from="1589298134332" duration="5000" />
-      <workItem from="1589298159032" duration="28169000" />
+      <workItem from="1589298159032" duration="38878000" />
     </task>
     <task id="LOCAL-00001" summary="[update] gitignoreを更新">
       <created>1589306785588</created>
@@ -101,7 +97,21 @@
       <option name="project" value="LOCAL" />
       <updated>1589319374704</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="[update] ファイル関係を初期化">
+      <created>1589334445064</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1589334445064</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[update] ignoreに追加">
+      <created>1589334469896</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589334469896</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,7 +121,6 @@
         <option value="$PROJECT_DIR$/src/LineMessage.js" />
         <option value="$PROJECT_DIR$/src/LineBot.js" />
         <option value="$PROJECT_DIR$/src/LineMessages.js" />
-        <option value="$PROJECT_DIR$/src/UserHandler.js" />
         <option value="$PROJECT_DIR$/src/CalendarHandler.js" />
       </list>
     </option>
@@ -119,7 +128,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[update] gitignoreを更新" />
     <MESSAGE value="[update] ファイル構造を整理" />
-    <option name="LAST_COMMIT_MESSAGE" value="[update] ファイル構造を整理" />
+    <MESSAGE value="[update] ファイル関係を初期化" />
+    <MESSAGE value="[update] ignoreに追加" />
+    <option name="LAST_COMMIT_MESSAGE" value="[update] ignoreに追加" />
   </component>
   <component name="WindowStateProjectService">
     <state x="463" y="202" width="800" height="715" key="#Intentions" timestamp="1589334117076">
@@ -134,11 +145,16 @@
       <screen x="45" y="23" width="1635" height="1027" />
     </state>
     <state x="531" y="347" key="#com.intellij.fileTypes.FileTypeChooser/45.23.1635.1027@45.23.1635.1027" timestamp="1589312691685" />
-    <state x="425" y="126" key="CommitChangelistDialog2" timestamp="1589319374516">
-      <screen x="45" y="23" width="1635" height="1027" />
+    <state x="553" y="211" key="CommitChangelistDialog2" timestamp="1589334469786">
+      <screen x="42" y="23" width="1638" height="1027" />
     </state>
+    <state x="553" y="211" key="CommitChangelistDialog2/42.23.1638.1027@42.23.1638.1027" timestamp="1589334469786" />
     <state x="425" y="126" key="CommitChangelistDialog2/45.23.1635.1027@45.23.1635.1027" timestamp="1589319374516" />
     <state x="427" y="126" key="CommitChangelistDialog2/47.23.1633.1027@47.23.1633.1027" timestamp="1589306785419" />
+    <state x="205" y="124" key="DiffContextDialog" timestamp="1589334421102">
+      <screen x="42" y="23" width="1638" height="1027" />
+    </state>
+    <state x="205" y="124" key="DiffContextDialog/42.23.1638.1027@42.23.1638.1027" timestamp="1589334421102" />
     <state x="687" y="422" key="Github.ShareDialog" timestamp="1589306563143">
       <screen x="47" y="23" width="1633" height="1027" />
     </state>
@@ -152,9 +168,10 @@
     </state>
     <state x="400" y="175" key="SettingsEditor/45.23.1635.1027@45.23.1635.1027" timestamp="1589312658119" />
     <state x="402" y="175" key="SettingsEditor/47.23.1633.1027@47.23.1633.1027" timestamp="1589300423830" />
-    <state x="462" y="276" key="Vcs.Push.Dialog.v2" timestamp="1589319377579">
-      <screen x="45" y="23" width="1635" height="1027" />
+    <state x="460" y="276" key="Vcs.Push.Dialog.v2" timestamp="1589334470925">
+      <screen x="42" y="23" width="1638" height="1027" />
     </state>
+    <state x="460" y="276" key="Vcs.Push.Dialog.v2/42.23.1638.1027@42.23.1638.1027" timestamp="1589334470925" />
     <state x="462" y="276" key="Vcs.Push.Dialog.v2/45.23.1635.1027@45.23.1635.1027" timestamp="1589319377579" />
     <state x="463" y="276" key="Vcs.Push.Dialog.v2/47.23.1633.1027@47.23.1633.1027" timestamp="1589306788666" />
   </component>

@@ -1,11 +1,15 @@
-// Compiled using ts2gas 3.6.1 (TypeScript 3.8.3)
-// //環境情報の設定
+///<reference path="Utils.ts"/>
+
+/*ユーザへのメッセージの送信を行う*/
+
+
+//環境情報の設定
 function initLine() {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Config");
     const token = sheet.getRange("B7").getValue();
     const url_reply = "https://api.line.me/v2/bot/message/reply";
     const url_message = "https://api.line.me/v2/bot/message/push";
-    const url_profile = "https://api.line.me/v2/profile";
+    const url_profile = "https://api.line.me/v2/bot/profile";
     const url_menu = "https://api.line.me/v2/bot/richmenu";
     const json_header = {
         "Content-Type": "application/json; charset=UTF-8",
@@ -37,89 +41,103 @@ function getUserInfo(id) {
     };
     // @ts-ignore
     const response = UrlFetchApp.fetch(info.url.profile + "/" + id, options);
-    console.log(response);
     return JSON.parse(response);
 }
 
 //日付選択メッセージを送信
-function bookingDate() {
+function bookingDate(id) {
     const info = initLine();
+    const min = datetimeFormatter(new Date());
+    const date = new Date()
+    date.setFullYear(date.getFullYear()+1)
+    const max = datetimeFormatter(date)
+
     const payload = {
-        "type": "template",
-        "altText": "this is a buttons template",
-        "template": {
-            "type": "buttons",
-            "actions": [
-                {
-                    "type": "datetimepicker",
-                    "label": "日時選択",
-                    "data": "{\"action\":\"booking\", \"status\":\"date\"}",
-                    "mode": "date",
-                    "initial": "2020-05-13",
-                    "max": "2021-12-31",
-                    "min": "2020-05-13"
+        "to": id,
+        "messages":[
+            {
+                "type": "template",
+                "altText": "this is a buttons template",
+                "template": {
+                    "type": "buttons",
+                    "actions": [
+                        {
+                            "type": "datetimepicker",
+                            "label": "日時選択",
+                            "data": "{\"action\":\"booking\", \"status\":\"date\"}",
+                            "mode": "datetime",
+                            "initial": min,
+                            "max": max,
+                            "min": min
+                        }
+                    ],
+                    "title": "予約日程",
+                    "text": "予約する日を選んでください．"
                 }
-            ],
-            "title": "予約日程",
-            "text": "予約する日を選んでください．"
-        }
+            }
+        ]
     };
+
     const options = {
-        method: 'post',
-        headers: info.json_header,
-        payload: JSON.stringify(payload)
+        "method": 'post',
+        "headers": info.json_header,
+        "payload": JSON.stringify(payload)
     };
     // @ts-ignore
-    const response = UrlFetchApp.fetch(info.url.message, options);
-    console.log(response);
+    return UrlFetchApp.fetch(info.url.message, options);
 }
 
 //コース選択メッセージを送信
-function bookingCourse() {
+function bookingCourse(id) {
     const info = initLine();
     const payload = {
-        "type": "template",
-        "altText": "this is a buttons template",
-        "template": {
-            "type": "buttons",
-            "actions": [
-                {
-                    "type": "postback",
-                    "label": "15分コース",
-                    "text": "course",
-                    "data": "{\"action\":\"booking\", \"status\":\"course\", \"value\":15}"
-                },
-                {
-                    "type": "postback",
-                    "label": "30分コース",
-                    "text": "{\"action\":\"booking\", \"status\":\"course\", \"value\":30}",
-                    "data": "30"
-                },
-                {
-                    "type": "postback",
-                    "label": "60分コース",
-                    "text": "{\"action\":\"booking\", \"status\":\"course\", \"value\":60}",
-                    "data": "60"
-                },
-                {
-                    "type": "postback",
-                    "label": "90分コース",
-                    "text": "{\"action\":\"booking\", \"status\":\"course\", \"value\":90}",
-                    "data": "90"
+        "to": id,
+        "messages":[
+            {
+                "type": "template",
+                "altText": "this is a buttons template",
+                "template": {
+                    "type": "buttons",
+                    "actions": [
+                        {
+                            "type": "postback",
+                            "label": "15分コース",
+                            "text": "15分コースで予約",
+                            "data": "{\"action\":\"booking\", \"status\":\"course\", \"value\":15}"
+                        },
+                        {
+                            "type": "postback",
+                            "label": "30分コース",
+                            "text": "30分コースで予約",
+                            "data": "{\"action\":\"booking\", \"status\":\"course\", \"value\":30}"
+                        },
+                        {
+                            "type": "postback",
+                            "label": "60分コース",
+                            "text": "60分コースで予約",
+                            "data": "{\"action\":\"booking\", \"status\":\"course\", \"value\":60}"
+                        },
+                        {
+                            "type": "postback",
+                            "label": "90分コース",
+                            "text": "90分コースで予約",
+                            "data": "{\"action\":\"booking\", \"status\":\"course\", \"value\":90}"
+                        }
+                    ],
+                    "title": "予約コース選択",
+                    "text": "予約するコースを選んでください"
                 }
-            ],
-            "title": "予約コース選択",
-            "text": "予約するコースを選んでください"
-        }
+            }
+        ]
     };
     const options = {
-        method: 'post',
-        headers: info.json_header,
-        payload: JSON.stringify(payload)
+        "method": 'post',
+        "headers": info.json_header,
+        "payload": JSON.stringify(payload)
     };
+    console.log(options)
     // @ts-ignore
-    const response = UrlFetchApp.fetch(info.url.message, options);
-    console.log(response);
+    return UrlFetchApp.fetch(info.url.message, options);
 }
 
 //メッセージを送信
@@ -138,6 +156,5 @@ function sendMessage(id, message) {
         "payload": JSON.stringify(payload)
     };
     // @ts-ignore
-    const response = UrlFetchApp.fetch(info.url.message, options);
-    console.log(response);
+    return UrlFetchApp.fetch(info.url.message, options);
 }

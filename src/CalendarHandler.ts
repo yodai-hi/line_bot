@@ -1,18 +1,24 @@
-// Compiled using ts2gas 3.6.1 (TypeScript 3.8.3)
 ///<reference path="LineBot.ts"/>
 
-function initCalendar(row) {
+/*カレンダーとの連携を行う*/
+
+
+//カレンダーの情報を取得
+function initCalendar() {
     //Configから環境情報の読み込み
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Config");
     const parallel = sheet.getRange("B5").getValue();
     const calendarId = sheet.getRange("B6").getValue();
     //カレンダーインスタンスの生成
     const calendar = CalendarApp.getCalendarById(calendarId);
-    sendToCalendar(row, calendar, parallel);
+    return {
+        parallel: parallel,
+        calendar: calendar,
+    }
 }
-
 //カレンダーに予約を登録する関数
-function sendToCalendar(row, calendar, parallels) {
+function sendToCalendar(row) {
+    const info = initCalendar()
     let message;
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Booking");
     //登録する情報
@@ -27,13 +33,16 @@ function sendToCalendar(row, calendar, parallels) {
     const hour = e_time.getHours() + (e_time.getMinutes() + delta - ((e_time.getMinutes() + delta) % 60)) / 60;
     e_time.setHours(hour);
     e_time.setMinutes(min);
+
+    console.log(u_id, u_name, s_time, e_time)
+
     try {
         //この時間帯が空いているかどうか
-        if (checkBookable(calendar, s_time, e_time, parallels)) {
+        if (checkBookable(info.calendar, s_time, e_time, info.parallel)) {
             //予約情報をカレンダーに追加
-            var thing = u_name + "様　ご予約";
-            calendar.createEvent(thing, s_time, e_time);
-            message = u_name + "様　\n\n" + s_time + "〜" + e_time + "\n\n でご予約を承りました。\n\n ありがとうございました。";
+            const thing = u_name + "様　ご予約";
+            info.calendar.createEvent(thing, s_time, e_time);
+            message = u_name + "様　\n\n" + s_time.toDateString() + "〜" + e_time + "\n\n でご予約を承りました。\n\n ありがとうございました。";
         }
         else {
             message = u_name + "様　\n\n ご予約の時間に先約がありましたので、\n 申し訳ございませんが、ご予約いただけませんでした。\n\n ご予定を変更して再度お申込みください。";
@@ -46,25 +55,23 @@ function sendToCalendar(row, calendar, parallels) {
     //Botにメッセージを送信
     sendMessage(u_id, message);
 }
-
 // 先約があるかどうか調べる関数
 function checkBookable(calendar, s_time, e_time, parallel) {
-    let i;
     let end_min;
     let end_hour;
     let start_min;
     let start_hour;
-    // const event_num = calendar.getEvents(s_time, e_time).length;
+
     const events = calendar.getEvents(s_time, e_time);
     const time_array = [];
-    for (i in events) {
+    for (let i in events) {
         time_array.push(events[i].getStartTime());
         time_array.push(events[i].getEndTime());
     }
     time_array.sort();
     let duplicate = 0;
     //予定の期間内に存在するイベントの開始，終了時刻付近の重複を調べる
-    for (i in time_array) {
+    for (let i in time_array) {
         if (time_array[i] >= s_time && time_array[i] <= e_time) {
             if (time_array[i].getMinutes() == 0) {
                 start_hour = time_array[i].getHours() - 1;
