@@ -8,7 +8,7 @@
 
 //GETのハンドリング
 function doGet(e) {
-    return ContentService.createTextOutput("SUCCESS");
+    return ContentService.createTextOutput("Hello World\n\n"+e.toString());
 }
 
 
@@ -21,6 +21,8 @@ function doPost(e) {
     const eventType = event.type;
     // user情報
     const id = event.source.userId;
+
+
     //フォローされた
     if (eventType == "follow") {
         let user = getUserInfo(id);
@@ -30,32 +32,51 @@ function doPost(e) {
         let createdAt = new Date(event.timestamp);
         addUser([id, name, icon, statusMessage, createdAt, false]);
     }
+
     //ブロックされた
     else if (eventType == "unfollow") {
         deleteUser(id);
     }
+
     //postbackイベント
     else if (eventType == "postback") {
         const postback = JSON.parse(event.postback.data);
-        //予約開始
-        if (postback.action == "booking" && postback.status == "start") {
-            bookingNow(id); //予約中のフラグを立てる
-            bookingDate(id); //日付選択へ
+
+        /* =============予約============= */
+        if(postback.action == "booking"){
+            //予約開始
+            if (postback.status == "start") {
+                bookingNow(id); //予約中のフラグを立てる
+                bookingDate(id); //日付選択へ
+            }
+            //日付選択完了
+            if (postback.status == "date") {
+                const date = new Date(event.timestamp);
+                let name = getNameById(id);
+                sheet.appendRow([id, name, date]);
+                bookingCourse(id); //コース選択へ
+            }
+            //コース選択完了
+            if (postback.status == "course") {
+                const course = postback.value;
+                const rowNum = getLatestBookingById(id, 4, course);
+                sendToCalendar(rowNum); //予約データの保存処理
+            }
         }
-        //日付選択完了
-        if (postback.action == "booking" && postback.status == "date") {
-            const date = new Date(event.timestamp);
-            let name = getNameById(id);
-            sheet.appendRow([id, name, date]);
-            bookingCourse(id); //コース選択へ
+
+        /* =============事前診断============= */
+        else if (postback.action == "diagnosis") {
+            // TODO implement
+            sendMessage(id, "この機能は未実装です。\n もうしばらくお待ち下さい。")
         }
-        //コース選択完了
-        if (postback.action == "booking" && postback.status == "course") {
-            const course = postback.value;
-            const rowNum = getLatestBookingById(id, 4, course);
-            sendToCalendar(rowNum); //予約データの保存処理
+
+        /* =============連絡============= */
+        else if (postback.action == "contact"){
+            // TODO implement
+            sendMessage(id, "この機能は未実装です。\n もうしばらくお待ち下さい。")
         }
     }
+
     //イベントを終了
     else if (eventType == "message") {
         const text = event.message.text;
