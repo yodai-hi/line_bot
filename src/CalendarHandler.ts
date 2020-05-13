@@ -34,15 +34,13 @@ function sendToCalendar(row) {
     e_time.setHours(hour);
     e_time.setMinutes(min);
 
-    console.log(u_id, u_name, s_time, e_time)
-
     try {
         //この時間帯が空いているかどうか
         if (checkBookable(info.calendar, s_time, e_time, info.parallel)) {
             //予約情報をカレンダーに追加
             const thing = u_name + "様　ご予約";
             info.calendar.createEvent(thing, s_time, e_time);
-            message = u_name + "様　\n\n" + s_time.toDateString() + "〜" + e_time + "\n\n でご予約を承りました。\n\n ありがとうございました。";
+            message = u_name + "様　\n\n" + datetimeJapanFormatter(s_time) + "〜" + datetimeJapanFormatter(e_time) + "\n\n でご予約を承りました。\n\n ありがとうございました。";
         }
         else {
             message = u_name + "様　\n\n ご予約の時間に先約がありましたので、\n 申し訳ございませんが、ご予約いただけませんでした。\n\n ご予定を変更して再度お申込みください。";
@@ -64,12 +62,15 @@ function checkBookable(calendar, s_time, e_time, parallel) {
 
     const events = calendar.getEvents(s_time, e_time);
     const time_array = [];
-    for (let i in events) {
-        time_array.push(events[i].getStartTime());
-        time_array.push(events[i].getEndTime());
+    for (let ev in events) {
+        if (events.hasOwnProperty(ev)){
+            time_array.push(events[ev].getStartTime());
+            time_array.push(events[ev].getEndTime());
+        }
     }
     time_array.sort();
     let duplicate = 0;
+
     //予定の期間内に存在するイベントの開始，終了時刻付近の重複を調べる
     for (let i in time_array) {
         if (time_array[i] >= s_time && time_array[i] <= e_time) {
