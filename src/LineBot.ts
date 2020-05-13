@@ -51,7 +51,7 @@ function doPost(e) {
             }
             //日付選択完了
             if (postback.status == "date") {
-                const date = new Date(event.timestamp);
+                const date = new Date(event.postback.params.datetime);
                 let name = getNameById(id);
                 sheet.appendRow([id, name, date]);
                 bookingCourse(id); //コース選択へ
