@@ -11,6 +11,7 @@ function initLine() {
     const url_message = "https://api.line.me/v2/bot/message/push";
     const url_profile = "https://api.line.me/v2/bot/profile";
     const url_menu = "https://api.line.me/v2/bot/richmenu";
+
     const json_header = {
         "Content-Type": "application/json; charset=UTF-8",
         "Authorization": "Bearer " + token
@@ -19,6 +20,7 @@ function initLine() {
         "Content-Type": "image/png",
         "Authorization": "Bearer " + token
     };
+
     return {
         token: token,
         url: {
@@ -47,10 +49,10 @@ function getUserInfo(id) {
 //日付選択メッセージを送信
 function bookingDate(id) {
     const info = initLine();
-    const min = datetimeFormatter(new Date());
+    const min = datetimePickerFormatter(new Date());
     const date = new Date()
     date.setFullYear(date.getFullYear()+1)
-    const max = datetimeFormatter(date)
+    const max = datetimePickerFormatter(date)
 
     const payload = {
         "to": id,
