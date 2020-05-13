@@ -22,8 +22,8 @@ function sendToCalendar(row) {
     let message;
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Booking");
     //登録する情報
-    const u_id = sheet.getRange(row, 1).getValue();
-    const u_name = sheet.getRange(row, 2).getValue();
+    const id = sheet.getRange(row, 1).getValue();
+    const name = sheet.getRange(row, 2).getValue();
     //登録に必要な時間情報
     const s_time = new Date(sheet.getRange(row, 3).getValue());
     const delta = sheet.getRange(row, 4).getValue();
@@ -38,20 +38,24 @@ function sendToCalendar(row) {
         //この時間帯が空いているかどうか
         if (checkBookable(info.calendar, s_time, e_time, info.parallel)) {
             //予約情報をカレンダーに追加
-            const thing = u_name + "様　ご予約";
+            const thing = name + "様　ご予約";
             info.calendar.createEvent(thing, s_time, e_time);
-            message = u_name + "様　\n\n" + datetimeJapanFormatter(s_time) + "〜" + datetimeJapanFormatter(e_time) + "\n\n でご予約を承りました。\n\n ありがとうございました。";
+            message = name + "様　\n\n" + datetimeJapanFormatter(s_time) + "〜" + datetimeJapanFormatter(e_time) + "\n\n でご予約を承りました。\n\n ありがとうございました。";
+            getLatestBookingById(id, 5, true);
         }
         else {
-            message = u_name + "様　\n\n ご予約の時間に先約がありましたので、\n 申し訳ございませんが、ご予約いただけませんでした。\n\n ご予定を変更して再度お申込みください。";
+            message = name + "様　\n\n ご予約の時間に先約がありましたので、\n 申し訳ございませんが、ご予約いただけませんでした。\n\n ご予定を変更して再度お申込みください。";
+            getLatestBookingById(id, 5, false);
         }
     }
     catch (exp) {
         //実行に失敗した時に通知
         message = "予約に失敗しました。 \n 時間を置いてもう一度やり直してください。";
+        getLatestBookingById(id, 5, false);
+
     }
     //Botにメッセージを送信
-    sendMessage(u_id, message);
+    sendMessage(id, message);
 }
 // 先約があるかどうか調べる関数
 function checkBookable(calendar, s_time, e_time, parallel) {
