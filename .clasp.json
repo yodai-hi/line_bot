@@ -1,7 +1,5 @@
 {
-  "scriptId":"178E5k_hWoyTr77SMMt6dJ4QTc3qyFa3lGTBC7GFtqLIszY6nH6zBSQzb",
-  "rootDir":"./src",
-  "fileExtension":"ts",
-  "projectId":"sanwa-line-bot",
-  "filePushOrder": ["CalendarController.ts", "LineBot.ts", "LineMessage.ts", "LineRichMenu.ts"]
+  "scriptId":"1KxpJxquqG-hjTr5KUHCu2MdXt5oYL4MnXOHIK7ANlxh6dXeUvI7eExaz",
+  "rootDir": "./src",
+  "fileExtension": "ts"
 }

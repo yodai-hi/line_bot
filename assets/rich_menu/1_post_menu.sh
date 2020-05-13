@@ -51,4 +51,5 @@ curl -v -X POST https://api.line.me/v2/bot/richmenu \
       }
     }
   ]
-}'
+}
+'
