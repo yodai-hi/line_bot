@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5585c525-784a-4d50-8c6b-2cfeef63eebb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/assets/rich_menu/さんわ鍼灸整骨院_公式.lbd" beforeDir="false" afterPath="$PROJECT_DIR$/assets/rich_menu/さんわ鍼灸整骨院_公式.lbd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/rich_menu/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/rich_menu/assets/menu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/rich_menu/assets/menu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/rich_menu/delete_richmenu.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/rich_menu/post_richmenu.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/rich_menu/1_post_menu.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/rich_menu/2_post_image.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/rich_menu/3_request_menu.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/rich_menu/menu.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/rich_menu/menu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/rich_menu/さんわ鍼灸整骨院_公式.lbd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/さんわ鍼灸整骨院_公式.lbd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LineBot.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/LineBot.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SheetBookingHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/SheetBookingHandler.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +55,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/creds.json" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/assets/rich_menu/.env&#10;/Users/yodai/0_directory/1_develop/4_gas/line_bot/creds.json" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="go.import.settings.migrated" value="true" />
@@ -58,8 +72,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/assets/rich_menu/assets" />
+      <recent name="$PROJECT_DIR$/assets/rich_menu/old" />
       <recent name="$PROJECT_DIR$/assets/rich_menu" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -74,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589298132401</updated>
       <workItem from="1589298134332" duration="5000" />
-      <workItem from="1589298159032" duration="40615000" />
+      <workItem from="1589298159032" duration="56604000" />
     </task>
     <task id="LOCAL-00001" summary="[update] gitignoreを更新">
       <created>1589306785588</created>
@@ -125,7 +141,21 @@
       <option name="project" value="LOCAL" />
       <updated>1589346531831</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[update] 予約の成功・失敗フラグの挿入を追加">
+      <created>1589346979531</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589346979531</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[fix] 予約の時刻が現在時刻になるバグを修正">
+      <created>1589347264381</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1589347264381</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,7 +177,9 @@
     <MESSAGE value="[check] 動作を確認" />
     <MESSAGE value="[update] messageの表記を修正" />
     <MESSAGE value="[update] 未実装部分のTODOを追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="[update] 未実装部分のTODOを追加" />
+    <MESSAGE value="[update] 予約の成功・失敗フラグの挿入を追加" />
+    <MESSAGE value="[fix] 予約の時刻が現在時刻になるバグを修正" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] 予約の時刻が現在時刻になるバグを修正" />
   </component>
   <component name="WindowStateProjectService">
     <state x="497" y="222" key="#Inspections" timestamp="1589345683078">
@@ -162,14 +194,15 @@
       <screen x="47" y="23" width="1633" height="1027" />
     </state>
     <state x="328" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/47.23.1633.1027@47.23.1633.1027" timestamp="1589307609684" />
-    <state x="531" y="347" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589312691685">
-      <screen x="45" y="23" width="1635" height="1027" />
-    </state>
-    <state x="531" y="347" key="#com.intellij.fileTypes.FileTypeChooser/45.23.1635.1027@45.23.1635.1027" timestamp="1589312691685" />
-    <state x="552" y="211" key="CommitChangelistDialog2" timestamp="1589346531704">
+    <state x="528" y="347" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589360114533">
       <screen x="41" y="23" width="1639" height="1027" />
     </state>
-    <state x="552" y="211" key="CommitChangelistDialog2/41.23.1639.1027@41.23.1639.1027" timestamp="1589346531704" />
+    <state x="528" y="347" key="#com.intellij.fileTypes.FileTypeChooser/41.23.1639.1027@41.23.1639.1027" timestamp="1589360114533" />
+    <state x="531" y="347" key="#com.intellij.fileTypes.FileTypeChooser/45.23.1635.1027@45.23.1635.1027" timestamp="1589312691685" />
+    <state x="552" y="211" key="CommitChangelistDialog2" timestamp="1589347264247">
+      <screen x="41" y="23" width="1639" height="1027" />
+    </state>
+    <state x="552" y="211" key="CommitChangelistDialog2/41.23.1639.1027@41.23.1639.1027" timestamp="1589347264247" />
     <state x="553" y="211" key="CommitChangelistDialog2/42.23.1638.1027@42.23.1638.1027" timestamp="1589334469786" />
     <state x="425" y="126" key="CommitChangelistDialog2/45.23.1635.1027@45.23.1635.1027" timestamp="1589319374516" />
     <state x="427" y="126" key="CommitChangelistDialog2/47.23.1633.1027@47.23.1633.1027" timestamp="1589306785419" />
@@ -191,10 +224,10 @@
     <state x="397" y="175" key="SettingsEditor/41.23.1639.1027@41.23.1639.1027" timestamp="1589345437391" />
     <state x="400" y="175" key="SettingsEditor/45.23.1635.1027@45.23.1635.1027" timestamp="1589312658119" />
     <state x="402" y="175" key="SettingsEditor/47.23.1633.1027@47.23.1633.1027" timestamp="1589300423830" />
-    <state x="459" y="276" key="Vcs.Push.Dialog.v2" timestamp="1589346533230">
+    <state x="459" y="276" key="Vcs.Push.Dialog.v2" timestamp="1589347266332">
       <screen x="41" y="23" width="1639" height="1027" />
     </state>
-    <state x="459" y="276" key="Vcs.Push.Dialog.v2/41.23.1639.1027@41.23.1639.1027" timestamp="1589346533230" />
+    <state x="459" y="276" key="Vcs.Push.Dialog.v2/41.23.1639.1027@41.23.1639.1027" timestamp="1589347266332" />
     <state x="460" y="276" key="Vcs.Push.Dialog.v2/42.23.1638.1027@42.23.1638.1027" timestamp="1589334470925" />
     <state x="462" y="276" key="Vcs.Push.Dialog.v2/45.23.1635.1027@45.23.1635.1027" timestamp="1589319377579" />
     <state x="463" y="276" key="Vcs.Push.Dialog.v2/47.23.1633.1027@47.23.1633.1027" timestamp="1589306788666" />
