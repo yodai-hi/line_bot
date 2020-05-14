@@ -14,7 +14,6 @@ function doGet(e) {
 
 //POSTのハンドリング
 function doPost(e) {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Booking");
     const json = JSON.parse(e.postData.contents);
     //トリガーの共通部分
     const event = json.events[0];
@@ -53,7 +52,7 @@ function doPost(e) {
             if (postback.status == "date") {
                 const date = new Date(event.postback.params.datetime);
                 let name = getNameById(id);
-                sheet.appendRow([id, name, date]);
+                addNewBooking(id, name, date) //予約情報をBookingに追加
                 bookingCourse(id); //コース選択へ
             }
             //コース選択完了
@@ -64,14 +63,14 @@ function doPost(e) {
             }
         }
 
-        /* =============事前診断============= */
-        else if (postback.action == "diagnosis") {
+        /* =============レポート============= */
+        else if (postback.action == "report") {
             // TODO implement
             sendMessage(id, "この機能は未実装です。\n もうしばらくお待ち下さい。")
         }
 
-        /* =============連絡============= */
-        else if (postback.action == "contact"){
+        /* =============設定============= */
+        else if (postback.action == "setting"){
             // TODO implement
             sendMessage(id, "この機能は未実装です。\n もうしばらくお待ち下さい。")
         }
