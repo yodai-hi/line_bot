@@ -1,2 +1,6 @@
 # Project exclude paths
 /node_modules/
+.DS_Store
+.env
+.clasp.json
+.lbd

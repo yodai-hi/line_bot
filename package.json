@@ -1,18 +1,26 @@
 {
-  "name": "linbe_bot",
+  "name": "line_bot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "@types/google-apps-script": "^1.0.14"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.3.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yodai-hi/line_bot.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@google/clasp": "^2.3.0"
+  "bugs": {
+    "url": "https://github.com/yodai-hi/line_bot/issues"
   },
-  "dependencies": {
-    "@types/google-apps-script": "^1.0.14"
-  }
+  "homepage": "https://github.com/yodai-hi/line_bot#readme"
 }
