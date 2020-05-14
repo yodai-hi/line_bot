@@ -1,0 +1,5 @@
+{
+  "scriptId":"ここにScriptId",
+  "rootDir": "./src",
+  "fileExtension": "ts"
+}
